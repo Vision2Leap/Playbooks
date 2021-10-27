@@ -1,0 +1,22 @@
+---
+- name: Update group1
+  hosts: w2
+  become: yes
+  
+  tasks:
+  - name: Ensure GIT Installed
+    package:
+      name: git
+      state: present
+
+  - name: Ensure App deployed
+    git:
+      dest: /var/www/html
+      repo: https://github.com/ravi2krishna/ecomm.git
+ 
+  - name: Ensure HTTPD restarted
+    service:
+      name: httpd
+      state: restarted
+
+...
