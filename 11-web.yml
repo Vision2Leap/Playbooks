@@ -1,0 +1,49 @@
+---
+- name: Update all
+  hosts: all
+  become: yes
+
+  tasks:
+  - name: Ensure HTTPD Installed
+    package:
+      name: httpd
+      state: present
+    when: ansible_distribution == 'CentOS'
+
+  - name: Ensure HTTPD Started
+    service:
+      name: httpd
+      state: started
+    when: ansible_distribution == 'CentOS'
+
+  - name: Ensure HTTPD Enabled
+    service:
+      name: httpd
+      enabled: yes
+    when: ansible_distribution == 'CentOS'
+
+  - name: Ensure Apt updated
+    apt:
+      update_cache: yes
+    when: ansible_distribution == 'Ubuntu'
+
+  - name: Ensure Apache2 installed
+    package:
+      name: apache2
+      state: present
+    when: ansible_distribution == 'Ubuntu'
+
+  
+  - name: Ensure Apache2 started 
+    service:
+      name: apache2
+      state: started
+    when: ansible_distribution == 'Ubuntu'
+  
+  - name: Ensure Apache2 Enabled
+    service:
+      name: apache2
+      enabled: yes
+    when: ansible_distribution == 'Ubuntu'
+
+...
