@@ -1,0 +1,25 @@
+---
+- name: Update group1
+  hosts: g1
+  become: yes
+  vars:
+    httpd_port: 9000
+  handlers: 
+  - name: Restart HTTPD
+    service:
+      name: httpd
+      state: restarted
+  tasks:
+  - name: Ensure SELinux Permissive
+    selinux:
+      policy: targeted
+      state: permissive
+
+  - name: update Config File
+    template:
+      dest: /etc/httpd/conf/httpd.conf
+      src: httpd.j2
+    notify:
+    - Restart HTTPD
+
+...

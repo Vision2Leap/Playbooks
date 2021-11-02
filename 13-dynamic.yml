@@ -1,0 +1,14 @@
+---
+- name: Update group1
+  hosts: all
+  become: yes
+  vars:
+    user_name: shivam
+  tasks:
+
+  - name: update Config File
+    template:
+      dest: /var/www/html/dynamic.html 
+      src: dynamic.j2
+ 
+...
