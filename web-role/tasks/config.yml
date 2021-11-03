@@ -1,0 +1,25 @@
+---
+  - name: Ensure SELinux Permissive
+    selinux:
+      policy: targeted
+      state: permissive
+
+  - name: update Config File
+    template:
+      dest: /etc/httpd/conf/httpd.conf
+      src: httpd.j2
+    notify:
+    - Restart HTTPD
+ 
+  - name: update Date File
+    copy:
+      dest: /var/www/html/date.php
+      src: date.php    
+   
+  - name: Install PHP
+    package:
+      name: php
+      state: present
+    notify:
+    - Restart HTTPD
+...

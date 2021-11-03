@@ -1,0 +1,17 @@
+---
+  - name: Ensure HTTPD Installed
+    package:
+      name: httpd
+      state: present
+   
+  - name: Ensure HTTPD Started
+    service:
+      name: httpd
+      state: started
+  
+  - name: Ensure HTTPD Enabled
+    service:
+      name: httpd
+      enabled: yes
+
+...

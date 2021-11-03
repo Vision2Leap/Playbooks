@@ -1,0 +1,17 @@
+---
+- name: Update w1
+  hosts: w1
+  become: yes
+
+  tasks:
+  - name: Add several user
+    user:
+      name: '{{ item }}'
+      state: present
+    loop:
+      - a1
+      - a2
+      - a3
+      - a4
+
+...
