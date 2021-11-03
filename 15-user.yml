@@ -1,0 +1,27 @@
+---
+- name: Update w1
+  hosts: w1
+  become: yes
+
+  tasks:
+  - name: Ensure user1 added
+    user:
+      name: u1
+      state: present
+ 
+  - name: Ensure user2 added
+    user:
+      name: u2
+      state: present
+
+  - name: Ensure user3 added
+    user:
+      name: u3
+      state: present
+
+  - name: Ensure user4 added
+    user:
+      name: u4
+      state: present
+
+...
